@@ -25,10 +25,10 @@ namespace CSharpBasics
             // DT.FormatDateTimeValue();
 
             // S.ConsecutyCheck();
-            S.ShowDuplicates();
-            S.TimeFormatCheck();
-            S.ToPascalcase();
-            S.VowelsCount();
+            // S.ShowDuplicates();
+            // S.TimeFormatCheck();
+            // S.ToPascalCase();
+            // S.VowelsCount();
 
             #endregion Basics
         }

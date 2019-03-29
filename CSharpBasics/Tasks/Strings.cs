@@ -68,11 +68,30 @@ namespace Strings
         /// Write a program and ask the user to enter a time value in the 24-hour time 
         /// format(e.g. 19:00). A valid time should be between 00:00 and 23:59. If the 
         /// time is valid, display "Ok"; otherwise, display "Invalid Time". If the user 
-        /// doesn't provide any values, consider it as invalid time. 
+        /// doesn't provide any values, consider it as invalid format. 
         /// </summary>
         public static void TimeFormatCheck()
         {
-
+            Console.WriteLine("Enter a time value in the 24-hour time " +
+                "format (e.g. 19:00): ");
+            var time = Console.ReadLine();
+            try
+            {
+                var timeParts = Array.ConvertAll<string, int>(time.Split(':'), Convert.ToInt32);
+                var timeSpan = new TimeSpan(timeParts[0], timeParts[1], 0);
+                if (timeSpan.TotalDays < 1)
+                {
+                    Console.WriteLine($"Ok");
+                }
+                else
+                {
+                    Console.WriteLine($"Invalid Time");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Invalid format");
+            }
         }
 
         /// <summary>
@@ -82,9 +101,25 @@ namespace Strings
         /// the program is not dependent on the input. So, if the user types "NUMBER OF 
         /// STUDENTS", the program should still display "NumberOfStudents".
         /// </summary>
-        public static void ToPascalcase()
+        public static void ToPascalCase()
         {
+            Console.WriteLine("Enter a few words separated by a space");
 
+            var words = Console.ReadLine().Split(' ');
+
+            for (int i = 0; i < words.Length; i++)
+            {
+                words[i] = Char.ToUpperInvariant(words[i][0]) + words[i].Substring(1);
+            }
+
+            var sb = new StringBuilder();
+
+            foreach (var word in words)
+            {
+                sb.Append(word);
+            }
+
+            Console.WriteLine(sb);
         }
 
         /// <summary>
@@ -94,7 +129,16 @@ namespace Strings
         /// </summary>
         public static void VowelsCount()
         {
+            Console.WriteLine("Enter an English word");
+            var charArray = Console.ReadLine().ToCharArray();
+            var amountOfVowels = 0;
 
+            for (int i = 0; i < charArray.Length; i++)
+            {
+                if (charArray[i].IsVowel()) amountOfVowels++;
+            }
+
+            Console.WriteLine($"{amountOfVowels}");
         }
     }
 }
